@@ -1,38 +1,61 @@
-<h2>Password Generator</h2>
+<div class="p-24 bg-gray-100 justify-center flex">
 
+  <div class="bg-white p-8 border-solid border-gray-400 rounded-md drop-shadow-md">
 
-<div>
-  <label>
-    Password length
-    <input type="text" (input)="onChangeLength($event)">
-  </label>
+    <h2 class="text-3xl mb-3 text-gray-800">Password Generator</h2>
+
+    <div class="mb-3">
+      <label class="cursor-pointer">
+        Password Length
+        <input type="number"
+               class="bg-white border border-gray-300 text-gray-800 text-sm rounded p-1 block "
+               (input)="onChangeLength($event)">
+      </label>
+    </div>
+
+    <div class="mb-1">
+      <label class="cursor-pointer">
+        <input type="checkbox" (change)="onChangeNumbers()">
+        Use Numbers
+      </label>
+    </div>
+
+    <div class="mb-1">
+      <label class="cursor-pointer">
+        <input type="checkbox" (change)="onChangeLetters()">
+        Use Letters
+      </label>
+    </div>
+
+    <div class="mb-1">
+      <label class="cursor-pointer">
+        <input type="checkbox" (change)="onChangeSymbols()">
+        Use Symbols
+      </label>
+    </div>
+
+    <div class="mb-1">
+      <input type="button"
+             class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bolder py-1.5 px-3 rounded cursor-pointer"
+             value="Generate"
+             [ngClass]="{'bg-gray-300 hover:bg-gray-300 cursor-not-allowed': !(passwordLength && (includeLetters || includeNumbers || includeSymbols))}"
+             [disabled]="!(passwordLength && (includeLetters || includeNumbers || includeSymbols))"
+             (click)="generatePassword()">
+    </div>
+
+    <hr class="my-3">
+
+    <div>
+      <label>
+        Password {{password}}
+        <input type="text"
+               class="bg-white border border-gray-300 text-gray-800 text-sm rounded p-1 block "
+               value="{{password}}">
+      </label>
+    </div>
+
+  </div>
+
 </div>
-<div>
-  <label>
-    Use numbers
-    <input type="checkbox" (change)="onChangeNumbers()">
-  </label>
-</div>
-<div>
-  <label>
-    Use letters
-    <input type="checkbox" (change)="onChangeLetters()">
-  </label>
-</div>
-<div>
-  <label>
-    Use symbols
-    <input type="checkbox" (change)="onChangeSymbols()">
-  </label>
-</div>
-<div>
-  <input type="button" value="Generate" (click)="generate()">
-</div>
-<hr>
-<div>
-  <label>
-    Password
-    <input type="text" value="{{password}}">
-  </label>
-</div>
+
 

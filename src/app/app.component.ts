@@ -35,30 +35,31 @@ export class AppComponent {
     }
   }
 
-  generate(): void {
-    const letters = 'abcdefghijklmnopqrstuvwxyz'
-    const nums = '1234567890'
-    const symbols = '!@#$%^&*(){};+-=_'
+  generatePassword(): void {
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    const numbers = '1234567890';
+    const symbols = '!@#$%^&*(){};+-=_';
 
-    let availableSymbols = '';
+    let symbolsPool = '';
+
     this.password = '';
 
 
     if (this.includeSymbols) {
-      availableSymbols += letters
+      symbolsPool += symbols
     }
 
     if (this.includeLetters) {
-      availableSymbols += symbols
+      symbolsPool += letters
     }
 
     if (this.includeNumbers) {
-      availableSymbols += nums;
+      symbolsPool += numbers;
     }
 
     for (let i = 0; i < this.passwordLength; i++) {
-      const index = Math.floor(Math.random() * availableSymbols.length);
-      this.password += availableSymbols[index];
+      const index = Math.floor(Math.random() * symbolsPool.length);
+      this.password += symbolsPool[index];
     }
   }
 }
